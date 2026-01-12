@@ -1,73 +1,59 @@
-import java.util.Scanner;
+using System;
 
-public class ArithmeticCalculator {
-
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+class ArithmeticCalculator
+{
+    static void Main(string[] args)
+    {
         char continueChoice = 'Y';
 
-        while (Character.toUpperCase(continueChoice) != 'N') {
-            // 1. Display Menu
-            System.out.println("Press any following key to perform an arithmetic operation:");
-            System.out.println("1 - Addition");
-            System.out.println("2 - Subtraction");
-            System.out.println("3 - Multiplication");
-            System.out.println("4 - Division");
+        while (char.ToUpper(continueChoice) == 'Y')
+        {
+            Console.WriteLine("Press any following key to perform an arithmetic operation:");
+            Console.WriteLine("1 - Addition");
+            Console.WriteLine("2 - Subtraction");
+            Console.WriteLine("3 - Multiplication");
+            Console.WriteLine("4 - Division");
 
-            int choice = scanner.nextInt();
+            int choice = int.Parse(Console.ReadLine());
 
-            // 2. Input Handling
-            System.out.print("Enter Value 1: ");
-            double val1 = scanner.nextDouble();
-            System.out.print("Enter Value 2: ");
-            double val2 = scanner.nextDouble();
+            Console.Write("Enter Value 1: ");
+            double val1 = double.Parse(Console.ReadLine());
 
-            // 3. Switch-Case Control Structure
-            switch (choice) {
+            Console.Write("Enter Value 2: ");
+            double val2 = double.Parse(Console.ReadLine());
+
+            // Switch-case to route execution based on choice
+            switch (choice)
+            {
                 case 1:
-                    System.out.println(val1 + " + " + val2 + " = " + add(val1, val2));
+                    Console.WriteLine($"{val1} + {val2} = {Add(val1, val2)}");
                     break;
                 case 2:
-                    System.out.println(val1 + " - " + val2 + " = " + subtract(val1, val2));
+                    Console.WriteLine($"{val1} - {val2} = {Subtract(val1, val2)}");
                     break;
                 case 3:
-                    System.out.println(val1 + " * " + val2 + " = " + multiply(val1, val2));
+                    Console.WriteLine($"{val1} * {val2} = {Multiply(val1, val2)}");
                     break;
                 case 4:
-                    if (val2 != 0) {
-                        System.out.println(val1 + " / " + val2 + " = " + divide(val1, val2));
-                    } else {
-                        System.out.println("Error: Division by zero is not allowed.");
-                    }
+                    if (val2 != 0)
+                        Console.WriteLine($"{val1} / {val2} = {Divide(val1, val2)}");
+                    else
+                        Console.WriteLine("Error: Division by zero is not allowed.");
                     break;
                 default:
-                    System.out.println("Invalid choice. Please select 1-4.");
+                    Console.WriteLine("Invalid selection.");
+                    break;
             }
 
-            // 4. Continue/Exit Prompt
-            System.out.print("Do you want to continue again (Y/N)? ");
-            continueChoice = scanner.next().charAt(0);
-            System.out.println(); // Adds a newline for clarity
+            Console.Write("Do you want to continue again (Y/N)? ");
+            continueChoice = Console.ReadKey().KeyChar;
+            Console.WriteLine("\n");
         }
-
-        System.out.println("Program terminated. Goodbye!");
-        scanner.close();
     }
 
-    // Core Logic: Separate Methods
-    public static double add(double a, double b) {
-        return a + b;
-    }
-
-    public static double subtract(double a, double b) {
-        return a - b;
-    }
-
-    public static double multiply(double a, double b) {
-        return a * b;
-    }
-
-    public static double divide(double a, double b) {
-        return a / b;
-    }
+    // Separate Methods for Core Logic
+    static double Add(double a, double b) => a + b;
+    static double Subtract(double a, double b) => a - b;
+    static double Multiply(double a, double b) => a * b;
+    static double Divide(double a, double b) => a / b;
 }
